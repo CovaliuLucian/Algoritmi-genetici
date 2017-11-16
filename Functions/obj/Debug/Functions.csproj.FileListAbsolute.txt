@@ -1,0 +1,5 @@
+C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Functions\bin\Debug\Functions.dll
+C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Functions\bin\Debug\Functions.pdb
+C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Functions\obj\Debug\Functions.dll
+C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Functions\obj\Debug\Functions.pdb
+C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Functions\obj\Debug\Functions.csprojResolveAssemblyReference.cache
