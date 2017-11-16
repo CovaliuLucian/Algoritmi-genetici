@@ -1,13 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Tema_2
 {
     public static class Genetics
     {
+        private static readonly Random RandomGenerator = new Random(Guid.NewGuid().GetHashCode());
+
         public static int GetRandom(int min, int max)
         {
-            var random = new Random(Guid.NewGuid().GetHashCode());
-            return random.Next(min, max);
+            return RandomGenerator.Next(min, max);
+        }
+
+        public static bool GetByChance(double chance)
+        {
+            if (chance > 1 || chance < 0)
+                throw new InvalidDataException();
+            return RandomGenerator.NextDouble() <= chance;
         }
 
         public static char Not(this char c)
@@ -23,6 +35,56 @@ namespace Tema_2
         public static int ToInt(this string number)
         {
             return Convert.ToInt32(number, 2);
+        }
+
+        public static string Mutate(this string number)
+        {
+            var position = GetRandom(0, 31);
+            var builder = new StringBuilder(number);
+            builder[position] = builder[position].Not();
+            return builder.ToString();
+        }
+
+        public static List<string> CrossOver(string firstNumber, string secondNumber)
+        {
+            var position = GetRandom(0, 31);
+            Console.WriteLine(position);
+            return new List<string>
+            {
+                firstNumber.Substring(0, position) + secondNumber.Substring(position),
+                secondNumber.Substring(0, position) + firstNumber.Substring(position)
+            };
+        }
+
+        public static void CrossOver(this IList<string> numbers)
+        {
+            var newList = new List<string>();
+            while (numbers.Count > 0)
+            {
+                if (numbers.Count != 1)
+                {
+                    var random1 = GetRandom(0, numbers.Count);
+                    var random2 = GetRandom(0, numbers.Count);
+
+                    // ia din lista cate unul pe rand
+                    var newNumbers = CrossOver(numbers[random1], numbers[random2]);
+                    newList.Add(newNumbers[0]);
+                    newList.Add(newNumbers[1]);
+
+                    numbers.RemoveAt(random1);
+                    numbers.RemoveAt(random2-1);
+                }
+                else
+                {
+                    numbers.RemoveAt(0);
+                    newList.Add(numbers[0]);
+                    break;
+                }
+            }
+            if (numbers.Count != 0)
+                throw new Exception("What the fuck");
+
+            newList.ForEach(numbers.Add);
         }
     }
 }
