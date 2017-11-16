@@ -1,8 +1,0 @@
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\bin\Debug\Tema 2.exe.config
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\bin\Debug\Tema 2.exe
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\bin\Debug\Tema 2.pdb
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\bin\Debug\Functions.dll
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\bin\Debug\Functions.pdb
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\obj\Debug\Tema 2.csprojResolveAssemblyReference.cache
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\obj\Debug\Tema 2.exe
-C:\Users\lucia\OneDrive\Documente\Visual Studio 2015\Projects\AG Lab 0\Tema 2\obj\Debug\Tema 2.pdb
