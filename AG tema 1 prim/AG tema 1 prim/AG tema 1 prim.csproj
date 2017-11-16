@@ -52,7 +52,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AG Lab 0\Functions\Functions.csproj">
+    <ProjectReference Include="..\..\Functions\Functions.csproj">
       <Project>{ed37c2a5-7fa3-4ee8-bcca-f89c8e18f062}</Project>
       <Name>Functions</Name>
     </ProjectReference>
