@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Data;
 using System.Text;
+using Tema_2.Exceptions;
 
 namespace Tema_2
 {
@@ -18,7 +18,7 @@ namespace Tema_2
         public static bool GetByChance(double chance)
         {
             if (chance > 1 || chance < 0)
-                throw new InvalidDataException();
+                throw new InvalidArgsException();
             return RandomGenerator.NextDouble() <= chance;
         }
 
@@ -32,9 +32,19 @@ namespace Tema_2
             return Convert.ToString(number, 2).PadLeft(32, number >= 0 ? '0' : '1');
         }
 
+        public static string ToBinary(this double number, int precisionQuantifier = 10000)
+        {
+            return Convert.ToString((int)Math.Floor(number*precisionQuantifier), 2).PadLeft(32, number >= 0 ? '0' : '1');
+        }
+
         public static int ToInt(this string number)
         {
             return Convert.ToInt32(number, 2);
+        }
+
+        public static double ToDouble(this string number, int precisionQuantifier=10000)
+        {
+            return (double) number.ToInt() / precisionQuantifier;
         }
 
         public static string Mutate(this string number)
@@ -64,15 +74,17 @@ namespace Tema_2
                 if (numbers.Count != 1)
                 {
                     var random1 = GetRandom(0, numbers.Count);
-                    var random2 = GetRandom(0, numbers.Count);
 
-                    // ia din lista cate unul pe rand
-                    var newNumbers = CrossOver(numbers[random1], numbers[random2]);
+                    var number1 = numbers[random1];
+                    numbers.RemoveAt(random1);
+
+                    var random2 = GetRandom(0, numbers.Count);
+                    var newNumbers = CrossOver(number1, numbers[random2]);
+
                     newList.Add(newNumbers[0]);
                     newList.Add(newNumbers[1]);
 
-                    numbers.RemoveAt(random1);
-                    numbers.RemoveAt(random2-1);
+                    numbers.RemoveAt(random2);
                 }
                 else
                 {
@@ -82,7 +94,7 @@ namespace Tema_2
                 }
             }
             if (numbers.Count != 0)
-                throw new Exception("What the fuck");
+                throw new InvalidExpressionException("What the fuck");
 
             newList.ForEach(numbers.Add);
         }

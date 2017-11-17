@@ -13,17 +13,24 @@ namespace Tema_2
             //    Console.WriteLine(test.ToBinary().Mutate()+"\n");
             //}
             Console.WriteLine(65535.ToBinary());
-            Console.WriteLine(0.ToBinary());
-            foreach (var s in Genetics.CrossOver(65535.ToBinary(), 0.ToBinary()))
+            Console.WriteLine(65536.ToBinary());
+            var a = Genetics.CrossOver(65535.ToBinary(), 65536.ToBinary());
+            foreach (var s in a)
             {
                 Console.Write(s+"\n");
             }
-            var a = Genetics.CrossOver(65535.ToBinary(), 0.ToBinary());
             a.CrossOver();
             foreach (var s in a)
             {
                 Console.Write(s + "\n");
             }
+
+            var test = Generator.GenerateGeneration(5, -200000, 200000, 5);
+            test.ForEach((x) =>
+            {
+                x.ForEach((b) => Console.Write(b.ToDouble() + " "));
+                Console.WriteLine();
+            });
         }
     }
 }

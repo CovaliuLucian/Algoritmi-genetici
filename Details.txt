@@ -1,0 +1,3 @@
+Conditie de oprire:
+Dev standard a fitnesului - nah
+avg Hamming dist -2/3 (pe cati biti difera)
