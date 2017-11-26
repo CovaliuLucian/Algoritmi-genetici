@@ -26,5 +26,17 @@ namespace Functions
 
             return result;
         }
+
+        public double Calculate(List<double> entry)
+        {
+            Counter++;
+            double result = 0;
+            entry.ForEach(
+                x =>
+                    result -= x * Math.Sin(Math.Sqrt(Math.Abs(x)))
+            );
+
+            return result;
+        }
     }
 }

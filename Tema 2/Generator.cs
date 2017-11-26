@@ -27,7 +27,7 @@ namespace Tema_2
             return toReturn;
         }
 
-        public static List<List<string>> GenerateGeneration(int dimensions, double min, double max, int count = 1)
+        public static Generation GenerateGeneration(int dimensions, double min, double max, int count = 1)
         {
             if (count < 1)
                 throw new InvalidArgsException();
@@ -35,10 +35,10 @@ namespace Tema_2
             var toReturn = new List<List<string>>();
             for (var i = 0; i < count; i++)
                 toReturn.Add(GenerateList(dimensions, min, max));
-            return toReturn;
+            return new Generation(toReturn);
         }
 
-        public static List<List<string>> GenerateGeneration(int dimensions, IFunction function, int count = 1)
+        public static Generation GenerateGeneration(int dimensions, IFunction function, int count = 1)
         {
             return GenerateGeneration(dimensions, (double) function.SearchMinimum, (double) function.SearchMaximum,
                 count);

@@ -10,5 +10,7 @@ namespace Functions
 
         int Counter { get; set; }
         decimal Calculate(List<decimal> entry);
+        double Calculate(List<double> entry);
+
     }
 }

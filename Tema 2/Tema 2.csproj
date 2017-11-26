@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Evaluator.cs" />
     <Compile Include="Exceptions\InvalidArgsException.cs" />
+    <Compile Include="Generation.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Genetics.cs" />
     <Compile Include="Program.cs" />

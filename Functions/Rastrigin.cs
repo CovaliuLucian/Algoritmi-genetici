@@ -26,5 +26,17 @@ namespace Functions
             result += 10 * entry.Count;
             return result;
         }
+
+        public double Calculate(List<double> entry)
+        {
+            Counter++;
+            double result = 0;
+            entry.ForEach(
+                x =>
+                    result += x * x - (10 * Math.Cos(2 * Math.PI * x))
+            );
+            result += 10 * entry.Count;
+            return result;
+        }
     }
 }

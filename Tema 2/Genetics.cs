@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using Tema_2.Exceptions;
 
@@ -37,6 +38,11 @@ namespace Tema_2
             return Convert.ToString((int)Math.Floor(number*precisionQuantifier), 2).PadLeft(32, number >= 0 ? '0' : '1');
         }
 
+        public static List<string> ToBinary(this List<double> numbers, int precisionQuantifier = 10000)
+        {
+            return numbers.Select(number => number.ToBinary(precisionQuantifier)).ToList();
+        }
+
         public static int ToInt(this string number)
         {
             return Convert.ToInt32(number, 2);
@@ -45,6 +51,11 @@ namespace Tema_2
         public static double ToDouble(this string number, int precisionQuantifier=10000)
         {
             return (double) number.ToInt() / precisionQuantifier;
+        }
+
+        public static List<double> ToDouble(this List<string> numbers, int precisionQuantifier = 10000)
+        {
+            return numbers.Select(number => number.ToDouble(precisionQuantifier)).ToList();
         }
 
         public static string Mutate(this string number)

@@ -20,5 +20,11 @@ namespace Functions
             Counter++;
             return entry.Select(t => t * t).Sum();
         }
+
+        public double Calculate(List<double> entry)
+        {
+            Counter++;
+            return entry.Select(t => t * t).Sum();
+        }
     }
 }
