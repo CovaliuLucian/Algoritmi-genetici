@@ -2,16 +2,16 @@
 
 namespace Tema_2
 {
-    public class Generation
+    public class Population
     {
         public List<List<string>> ValueList;
 
-        public Generation(List<List<string>> valueList)
+        public Population(List<List<string>> valueList)
         {
             ValueList = valueList;
         }
 
-        public Generation()
+        public Population()
         {
             ValueList = null;
         }

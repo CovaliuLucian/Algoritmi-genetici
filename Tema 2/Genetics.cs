@@ -16,6 +16,11 @@ namespace Tema_2
             return RandomGenerator.Next(min, max);
         }
 
+        public static double GetRandom()
+        {
+            return RandomGenerator.NextDouble() * (1 - double.Epsilon) + double.Epsilon;
+        }
+
         public static bool GetByChance(double chance)
         {
             if (chance > 1 || chance < 0)

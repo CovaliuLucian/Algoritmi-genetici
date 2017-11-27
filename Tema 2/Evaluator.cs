@@ -7,22 +7,18 @@ namespace Tema_2
 {
     public static class Evaluator
     {
-        public static double Evaluate(this List<string> listOfArgs,IFunction function)
+        public static double Evaluate(this List<string> listOfArgs, IFunction function)
         {
-            try
-            {
-                return 1 / function.Calculate(listOfArgs.ToDouble());
-            }
-            catch (DivideByZeroException)
-            {
-                return double.PositiveInfinity;
-            }
+
+            return function is SixHump
+                ? 1 / (function.Calculate(listOfArgs.ToDouble()) + 2) // I think? 1/positive
+                : 1 / (function.Calculate(listOfArgs.ToDouble()) + 1);
+
         }
 
-
-        public static List<double> Evaluate(this Generation generation, IFunction function)
+        public static List<double> Evaluate(this Population population, IFunction function)
         {
-            return generation.ValueList.Select(listOfArgs => listOfArgs.Evaluate(function)).ToList();
+            return population.ValueList.Select(listOfArgs => listOfArgs.Evaluate(function)).ToList();
         }
     }
 }

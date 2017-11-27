@@ -45,11 +45,12 @@
   <ItemGroup>
     <Compile Include="Evaluator.cs" />
     <Compile Include="Exceptions\InvalidArgsException.cs" />
-    <Compile Include="Generation.cs" />
+    <Compile Include="Population.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Genetics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WheelOfFortune.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

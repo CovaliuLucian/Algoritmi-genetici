@@ -25,7 +25,7 @@ namespace Tema_2
                 Console.Write(s + "\n");
             }
 
-            var test = Generator.GenerateGeneration(5, -200000, 200000, 5);
+            var test = Generator.GeneratePopulation(5, -200000, 200000, 5);
             test.ValueList.ForEach((x) =>
             {
                 x.ForEach((b) => Console.Write(b.ToDouble() + " "));
