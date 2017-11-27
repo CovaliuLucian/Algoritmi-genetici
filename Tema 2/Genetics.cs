@@ -71,6 +71,11 @@ namespace Tema_2
             return builder.ToString();
         }
 
+        public static List<string> Mutate(this IList<string> numbers)
+        {
+            return numbers.Select(number => number.Mutate()).ToList();
+        }
+
         public static List<string> CrossOver(string firstNumber, string secondNumber)
         {
             var position = GetRandom(0, 31);
@@ -114,5 +119,37 @@ namespace Tema_2
 
             newList.ForEach(numbers.Add);
         }
+
+        public static double HammingDistance(List<string> number1, List<string> number2)
+        {
+            var minCount = Math.Min(number1.Count,number2.Count);
+            var distance = 0;
+            var count = 0;
+            for (var i = 0; i < minCount; i++)
+            {
+                var hammingDistance = HammingDistance(number1[i], number2[i]);
+                if (hammingDistance == 0) continue;
+                count++;
+                distance += hammingDistance;
+            }
+            return (double)distance/count;
+        }
+
+        public static int HammingDistance(string number1, string number2)
+        {
+            var minCount = Math.Min(number1.Length, number2.Length);
+            var distance = 0;
+            for (var i = 0; i < minCount; i++)
+                if (number1[i] != number2[i])
+                    distance++;
+            return distance;
+        }
+
+        //public static List<string> SelectByChance(Population population, double chance)
+        //{
+        //    var a = population.ValueList.FindAll(x =>
+        //        GetByChance(chance)
+        //    ).ToList();
+        //}
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using Functions;
+using Tema_2.Selections;
 
 namespace Tema_2
 {
@@ -26,9 +28,25 @@ namespace Tema_2
             }
 
             var test = Generator.GeneratePopulation(5, -200000, 200000, 5);
-            test.ValueList.ForEach((x) =>
+            test.ValueList.ForEach(x =>
             {
                 x.ForEach((b) => Console.Write(b.ToDouble() + " "));
+                Console.WriteLine();
+            });
+
+            var evaluated = test.Evaluate(new DeJong1());
+            evaluated.ForEach(x =>
+            {
+                Console.Write(x + " ");
+            });
+            Console.WriteLine();
+
+            var wheel = new WheelOfFortune();
+
+            var wheeled = wheel.Select(test,new DeJong1());
+            wheeled.ValueList.ForEach(x =>
+            {
+                x.ForEach(b => Console.Write(b.ToDouble() + " "));
                 Console.WriteLine();
             });
         }
