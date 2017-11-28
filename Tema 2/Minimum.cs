@@ -19,21 +19,30 @@ namespace Tema_2
             return population.ValueList.Min(list => function.Calculate(list.ToDouble()));
         }
 
-        public static double GetMinimum(IFunction function,ISelection selector, int dimensions, int size, double crossChance = 0.1, double mutationChance=0.01)
+        public static double GetMinimum(IFunction function,ISelection selector, int dimensions, int size, double crossChance = 0.4, double mutationChance=0.1)
         {
             Stopwatch.Restart();
             var population = Generator.GeneratePopulation(dimensions, function, size);
-            var maxIterations = 1000;
-            while (population.HammingDistance() > 0 && maxIterations > 0)
+            const int maxIterations = 3000;
+            var count = 0;
+            var minimum = population.MinimOfPopulation(function);
+            while (population.HammingDistance() > -2 && count!=maxIterations)
             {
-                maxIterations--;
+                count++;
+                if(count%1000 == 0)
+                    Console.WriteLine("At " + count + " iterations.");
                 population = selector.Select(population, function);
                 population = population.CrossOver(function, crossChance);
                 population = population.Mutate(function, mutationChance);
+
+                var newMin = population.MinimOfPopulation(function);
+                if (minimum > newMin)
+                    minimum = newMin;
             }
+            Console.WriteLine(population.HammingDistance());
+            minimum = population.MinimOfPopulation(function);
             //population.Write();
-            //Console.WriteLine(population.ValueList.Count);
-            return population.MinimOfPopulation(function);
+            return minimum;
         }
     }
 }

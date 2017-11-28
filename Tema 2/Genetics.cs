@@ -77,9 +77,12 @@ namespace Tema_2
             return toReturn;
         }
 
-        public static List<string> Mutate(this IList<string> numbers, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        public static List<string> Mutate(this List<string> numbers, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
-            return numbers.Select(number => number.Mutate(min, max)).ToList();
+            var pos = GetRandom(0, numbers.Count);
+            numbers[pos] = numbers[pos].Mutate(min,max);
+            return numbers;
+            //return numbers.Select(number => number.Mutate(min, max)).ToList();
         }
 
         public static Population Mutate(this Population population, double chance = 0.01, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
