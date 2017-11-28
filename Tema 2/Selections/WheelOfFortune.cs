@@ -24,16 +24,18 @@ namespace Tema_2.Selections
 
             var toReturn = new List<List<string>>();
 
-            foreach (var t in relative)
+            foreach (var unused in relative)
             {
                 var random = Genetics.GetRandom();
                 for (var j = 0; j < relative.Count; j++)
                 {
-                    if (j == relative.Count - 1 && relative[j] < random && random <= 1)
+                    if (j == relative.Count - 1)
                     {
-                        toReturn.Add(population.ValueList[j]);
+                        if (relative[j] < random && random <= 1)
+                            toReturn.Add(population.ValueList[j]);
                         continue;
                     }
+
                     if (relative[j] < random && random <= relative[j + 1])
                         toReturn.Add(population.ValueList[j]);
                 }
