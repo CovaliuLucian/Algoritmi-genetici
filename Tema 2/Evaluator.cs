@@ -9,10 +9,9 @@ namespace Tema_2
     {
         public static double Evaluate(this List<string> listOfArgs, IFunction function)
         {
-
-            return function is SixHump
-                ? 1 / (function.Calculate(listOfArgs.ToDouble()) + 2) // I think? 1/positive
-                : 1 / (function.Calculate(listOfArgs.ToDouble()) + 1);
+            if (function is Schwefel)
+                return -function.Calculate(listOfArgs.ToDouble());
+            return 1 / (function.Calculate(listOfArgs.ToDouble()) + 2);
 
         }
 

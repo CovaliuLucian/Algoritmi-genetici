@@ -6,7 +6,7 @@ namespace Tema_2
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             //for (var i = 0; i < 200; i++)
             //{
@@ -14,41 +14,48 @@ namespace Tema_2
             //    Console.WriteLine(test.ToBinary());
             //    Console.WriteLine(test.ToBinary().Mutate()+"\n");
             //}
-            Console.WriteLine(65535.ToBinary());
-            Console.WriteLine(65536.ToBinary());
-            var a = Genetics.CrossOver(65535.ToBinary(), 65536.ToBinary());
-            foreach (var s in a)
-            {
-                Console.Write(s+"\n");
-            }
-            a.CrossOver();
-            foreach (var s in a)
-            {
-                Console.Write(s + "\n");
-            }
 
-            var test = Generator.GeneratePopulation(5, -200000, 200000, 5);
-            test.ValueList.ForEach(x =>
-            {
-                x.ForEach((b) => Console.Write(b.ToDouble() + " "));
-                Console.WriteLine();
-            });
+            //var test = Generator.GeneratePopulation(5, -5.12, 5.12, 5);
+            //test.ValueList.ForEach(x =>
+            //{
+            //    x.ForEach((b) => Console.Write(b.ToDouble() + " "));
+            //    Console.WriteLine();
+            //});
 
-            var evaluated = test.Evaluate(new DeJong1());
-            evaluated.ForEach(x =>
-            {
-                Console.Write(x + " ");
-            });
-            Console.WriteLine();
+            //var evaluated = test.Evaluate(new DeJong1());
+            //evaluated.ForEach(x =>
+            //{
+            //    Console.Write(x + " ");
+            //});
+            //Console.WriteLine();
 
-            var wheel = new WheelOfFortune();
+            //var wheel = new WheelOfFortune();
 
-            var wheeled = wheel.Select(test,new DeJong1());
-            wheeled.ValueList.ForEach(x =>
-            {
-                x.ForEach(b => Console.Write(b.ToDouble() + " "));
-                Console.WriteLine();
-            });
+            //var wheeled = wheel.Select(test,new DeJong1());
+            //wheeled.ValueList.ForEach(x =>
+            //{
+            //    x.ForEach(b => Console.Write(b.ToDouble() + " "));
+            //    Console.WriteLine();
+            //});
+
+            //Console.WriteLine();
+            //var crossed = wheeled.CrossOver();
+            //crossed.ValueList.ForEach(x =>
+            //{
+            //    x.ForEach(b => Console.Write(b.ToDouble() + " "));
+            //    Console.WriteLine();
+            //});
+
+            //Console.WriteLine();
+            //var mutated = wheeled.Mutate(0.5,-5.12,5.12);
+            //mutated.ValueList.ForEach(x =>
+            //{
+            //    x.ForEach(b => Console.Write(b.ToDouble() + " "));
+            //    Console.WriteLine();
+            //});
+
+            Console.WriteLine("\n\n\n\n\n");
+            Console.WriteLine(Minimum.GetMinimum(new DeJong1(), new WheelOfFortune(), 2, 100));
         }
     }
 }

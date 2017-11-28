@@ -41,7 +41,7 @@ namespace Tema_2.Selections
                 }
             }
 
-            return new Population(toReturn.Distinct().ToList());
+            return new Population(toReturn);
         }
     }
 }
