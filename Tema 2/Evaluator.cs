@@ -11,7 +11,9 @@ namespace Tema_2
         {
             if (function is Schwefel)
                 return -function.Calculate(listOfArgs.ToDouble());
-            return 1 / (function.Calculate(listOfArgs.ToDouble()) + 2);
+            if(function is SixHump)
+                return 1 / (function.Calculate(listOfArgs.ToDouble()) + 1.5);
+            return 1 / (function.Calculate(listOfArgs.ToDouble()) + 0.1);
 
         }
 

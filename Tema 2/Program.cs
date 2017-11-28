@@ -54,8 +54,17 @@ namespace Tema_2
             //    Console.WriteLine();
             //});
 
-            Console.WriteLine("\n\n\n\n\n");
-            Console.WriteLine(Minimum.GetMinimum(new DeJong1(), new WheelOfFortune(), 2, 100));
+            Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new WheelOfFortune(), 2, 100) + "\nCorrect: 0");
+            Console.WriteLine("It took " + Minimum.GetTime());
+
+            Console.WriteLine("\nSchwefel: " + Minimum.GetMinimum(new Schwefel(), new WheelOfFortune(), 2, 100) + "\nCorrect: " + -2*418.9819);
+            Console.WriteLine("It took " + Minimum.GetTime());
+
+            Console.WriteLine("\nSixHump: " + Minimum.GetMinimum(new SixHump(), new WheelOfFortune(), 2, 100) + "\nCorrect: -1.0316");
+            Console.WriteLine("It took " + Minimum.GetTime());
+
+            Console.WriteLine("\nRastrigin: " + Minimum.GetMinimum(new Rastrigin(), new WheelOfFortune(), 2, 100) + "\nCorrect: 0");
+            Console.WriteLine("It took " + Minimum.GetTime());
         }
     }
 }

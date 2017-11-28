@@ -38,10 +38,10 @@ namespace Tema_2
             return new Population(toReturn);
         }
 
-        public static Population GeneratePopulation(int dimensions, IFunction function, int count = 1)
+        public static Population GeneratePopulation(int dimensions, IFunction function, int size = 1)
         {
             return GeneratePopulation(dimensions, (double) function.SearchMinimum, (double) function.SearchMaximum,
-                count);
+                size);
         }
     }
 }

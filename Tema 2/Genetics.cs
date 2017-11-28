@@ -71,6 +71,7 @@ namespace Tema_2
             var builder = new StringBuilder(number);
             builder[position] = builder[position].Not();
             var toReturn = builder.ToString();
+
             while (toReturn.ToDouble() < min || toReturn.ToDouble() > max)
                 toReturn = Mutate(number);
             return toReturn;
@@ -121,8 +122,11 @@ namespace Tema_2
                     {
                         if (list.Equals(last))
                             toReturn.Add(list);
-                        temp = list;
-                        first = false;
+                        else
+                        {
+                            temp = list;
+                            first = false;
+                        }
                     }
                     else
                     {
