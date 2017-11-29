@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using Functions;
@@ -41,7 +40,8 @@ namespace Tema_2
 
         public static string ToBinary(this double number, int precisionQuantifier = 10000)
         {
-            return Convert.ToString((int)Math.Floor(number * precisionQuantifier), 2).PadLeft(32, number >= 0 ? '0' : '1');
+            return Convert.ToString((int) Math.Floor(number * precisionQuantifier), 2)
+                .PadLeft(32, number >= 0 ? '0' : '1');
         }
 
         public static List<string> ToBinary(this List<double> numbers, int precisionQuantifier = 10000)
@@ -56,7 +56,7 @@ namespace Tema_2
 
         public static double ToDouble(this string number, int precisionQuantifier = 10000)
         {
-            return (double)number.ToInt() / precisionQuantifier;
+            return (double) number.ToInt() / precisionQuantifier;
         }
 
         public static List<double> ToDouble(this List<string> numbers, int precisionQuantifier = 10000)
@@ -77,25 +77,29 @@ namespace Tema_2
             return toReturn;
         }
 
-        public static List<string> Mutate(this List<string> numbers, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        public static List<string> Mutate(this List<string> numbers, double min = double.NegativeInfinity,
+            double max = double.PositiveInfinity)
         {
             var pos = GetRandom(0, numbers.Count);
-            numbers[pos] = numbers[pos].Mutate(min,max);
+            numbers[pos] = numbers[pos].Mutate(min, max);
             return numbers;
             //return numbers.Select(number => number.Mutate(min, max)).ToList();
         }
 
-        public static Population Mutate(this Population population, double chance = 0.01, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        public static Population Mutate(this Population population, double chance = 0.01,
+            double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
-            return new Population(population.ValueList.Select(numbers => GetByChance(chance) ? numbers.Mutate(min, max) : numbers).ToList());
+            return new Population(population.ValueList
+                .Select(numbers => GetByChance(chance) ? numbers.Mutate(min, max) : numbers).ToList());
         }
 
         public static Population Mutate(this Population population, IFunction function, double chance = 0.1)
         {
-            return Mutate(population, chance, (double)function.SearchMinimum, (double)function.SearchMaximum);
+            return Mutate(population, chance, (double) function.SearchMinimum, (double) function.SearchMaximum);
         }
 
-        public static List<string> CrossOver(string firstNumber, string secondNumber, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        public static List<string> CrossOver(string firstNumber, string secondNumber,
+            double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
             var position = GetRandom(0, 31);
             var toReturn = new List<string>
@@ -103,14 +107,14 @@ namespace Tema_2
                 firstNumber.Substring(0, position) + secondNumber.Substring(position),
                 secondNumber.Substring(0, position) + firstNumber.Substring(position)
             };
-            while (toReturn[0].ToDouble() < min || toReturn[0].ToDouble() > max || toReturn[1].ToDouble() < min || toReturn[1].ToDouble() > max)
-            {
+            while (toReturn[0].ToDouble() < min || toReturn[0].ToDouble() > max || toReturn[1].ToDouble() < min ||
+                   toReturn[1].ToDouble() > max)
                 toReturn = CrossOver(firstNumber, secondNumber);
-            }
             return toReturn;
         }
 
-        public static List<string> CrossOver2(string firstNumber, string secondNumber, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        public static List<string> CrossOver2(string firstNumber, string secondNumber,
+            double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
             var first = new StringBuilder();
             var second = new StringBuilder();
@@ -128,14 +132,14 @@ namespace Tema_2
                 }
 
             var toReturn = new List<string> {first.ToString(), second.ToString()};
-            while (toReturn[0].ToDouble() < min || toReturn[0].ToDouble() > max || toReturn[1].ToDouble() < min || toReturn[1].ToDouble() > max)
-            {
+            while (toReturn[0].ToDouble() < min || toReturn[0].ToDouble() > max || toReturn[1].ToDouble() < min ||
+                   toReturn[1].ToDouble() > max)
                 toReturn = CrossOver(firstNumber, secondNumber);
-            }
             return toReturn;
         }
 
-        public static Population CrossOver(this Population population, double chance = 0.1, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        public static Population CrossOver(this Population population, double chance = 0.1,
+            double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
             var toReturn = new List<List<string>>();
             var first = true;
@@ -144,12 +148,13 @@ namespace Tema_2
             var last = population.ValueList.Last();
 
             foreach (var list in population.ValueList)
-            {
                 if (GetByChance(chance))
                     if (first)
                     {
                         if (list.Equals(last))
+                        {
                             toReturn.Add(list);
+                        }
                         else
                         {
                             temp = list;
@@ -170,7 +175,6 @@ namespace Tema_2
                     }
                 else
                     toReturn.Add(list);
-            }
 
             if (!first)
                 toReturn.Add(temp);
@@ -180,7 +184,7 @@ namespace Tema_2
 
         public static Population CrossOver(this Population population, IFunction function, double chance = 0.1)
         {
-            return CrossOver(population, chance, (double)function.SearchMinimum, (double)function.SearchMaximum);
+            return CrossOver(population, chance, (double) function.SearchMinimum, (double) function.SearchMaximum);
         }
 
         public static double HammingDistance(List<string> number1, List<string> number2)
@@ -192,7 +196,7 @@ namespace Tema_2
                 count++;
                 distance += HammingDistance(number1[i], number2[i]);
             }
-            return (double)distance / count;
+            return (double) distance / count;
         }
 
         public static int HammingDistance(string number1, string number2)
@@ -203,7 +207,8 @@ namespace Tema_2
         public static double HammingDistance(this Population population)
         {
             var first = population.ValueList.First();
-            return population.ValueList.Where(list => !list.Equals(first)).Sum(list => HammingDistance(first, list)) / population.ValueList.Count;
+            return population.ValueList.Where(list => !list.Equals(first)).Sum(list => HammingDistance(first, list)) /
+                   population.ValueList.Count;
         }
 
         public static void Write(this Population population)

@@ -8,10 +8,10 @@ namespace Tema_2.Selections
     {
         public Population Select(Population population, IFunction function)
         {
-            var orderedPopulation = new Population(population.ValueList.OrderBy(list => list.Evaluate(function)).Reverse().ToList());
+            var orderedPopulation =
+                new Population(population.ValueList.OrderBy(list => list.Evaluate(function)).Reverse().ToList());
             var toReturn = new List<List<string>>();
             while (toReturn.Count != population.ValueList.Count)
-            {
                 for (var i = 0; i < orderedPopulation.ValueList.Count; i++)
                 {
                     if (toReturn.Count == population.ValueList.Count)
@@ -21,10 +21,10 @@ namespace Tema_2.Selections
                         toReturn.Add(orderedPopulation.ValueList[i]);
                         continue;
                     }
-                    if (Genetics.GetByChance(((double)orderedPopulation.ValueList.Count - i) / orderedPopulation.ValueList.Count / 2))
+                    if (Genetics.GetByChance(((double) orderedPopulation.ValueList.Count - i) /
+                                             orderedPopulation.ValueList.Count / 2))
                         toReturn.Add(orderedPopulation.ValueList[i]);
                 }
-            }
 
             return new Population(toReturn);
         }

@@ -9,6 +9,7 @@ namespace Tema_2
     public static class Minimum
     {
         private static readonly Stopwatch Stopwatch = new Stopwatch();
+
         public static TimeSpan GetTime()
         {
             return Stopwatch.Elapsed;
@@ -19,14 +20,15 @@ namespace Tema_2
             return population.ValueList.Min(list => function.Calculate(list.ToDouble()));
         }
 
-        public static double GetMinimum(IFunction function,ISelection selector, int dimensions, int size, double crossChance = 0.4, double mutationChance=0.01)
+        public static double GetMinimum(IFunction function, ISelection selector, int dimensions, int size,
+            double crossChance = 0.4, double mutationChance = 0.01)
         {
             Stopwatch.Restart();
             var population = Generator.GeneratePopulation(dimensions, function, size);
             const int maxIterations = 1000;
             var count = 0;
             var minimum = population.MinimOfPopulation(function);
-            while (population.HammingDistance() > 2 && count!=maxIterations)
+            while (population.HammingDistance() > 2 && count != maxIterations)
             {
                 count++;
                 population = selector.Select(population, function);
