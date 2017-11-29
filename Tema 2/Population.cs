@@ -20,13 +20,13 @@ namespace Tema_2
 
         public void Write()
         {
-            Console.WriteLine(new DeJong1().Calculate(ValueList[0].ToDouble()));
-            //ValueList.ForEach(x =>
-            //{
-            //    //x.ForEach(b => Console.Write(b.ToDouble() + " "));
-            //    Console.Write(new DeJong1().Calculate(x.ToDouble()));
-            //    Console.WriteLine();
-            //});
+            //Console.WriteLine(new DeJong1().Calculate(ValueList[0].ToDouble()));
+            ValueList.ForEach(x =>
+            {
+                x.ForEach(b => Console.Write(b.ToDouble() + " "));
+                //Console.Write(new DeJong1().Calculate(x.ToDouble()));
+                Console.WriteLine();
+            });
         }
     }
 }

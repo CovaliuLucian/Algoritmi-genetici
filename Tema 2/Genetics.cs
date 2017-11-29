@@ -38,13 +38,13 @@ namespace Tema_2
             return Convert.ToString(number, 2).PadLeft(32, number >= 0 ? '0' : '1');
         }
 
-        public static string ToBinary(this double number, int precisionQuantifier = 10000)
+        public static string ToBinary(this double number, int precisionQuantifier = 1000)
         {
             return Convert.ToString((int) Math.Floor(number * precisionQuantifier), 2)
                 .PadLeft(32, number >= 0 ? '0' : '1');
         }
 
-        public static List<string> ToBinary(this List<double> numbers, int precisionQuantifier = 10000)
+        public static List<string> ToBinary(this List<double> numbers, int precisionQuantifier = 1000)
         {
             return numbers.Select(number => number.ToBinary(precisionQuantifier)).ToList();
         }
@@ -54,12 +54,12 @@ namespace Tema_2
             return Convert.ToInt32(number, 2);
         }
 
-        public static double ToDouble(this string number, int precisionQuantifier = 10000)
+        public static double ToDouble(this string number, int precisionQuantifier = 1000)
         {
             return (double) number.ToInt() / precisionQuantifier;
         }
 
-        public static List<double> ToDouble(this List<string> numbers, int precisionQuantifier = 10000)
+        public static List<double> ToDouble(this List<string> numbers, int precisionQuantifier = 1000)
         {
             return numbers.Select(number => number.ToDouble(precisionQuantifier)).ToList();
         }
@@ -120,7 +120,7 @@ namespace Tema_2
             var second = new StringBuilder();
 
             for (var i = 0; i < 32; i++)
-                if (GetByChance(0.8))
+                if (GetByChance(0.5))
                 {
                     first.Append(firstNumber[i]);
                     second.Append(secondNumber[i]);
@@ -145,13 +145,13 @@ namespace Tema_2
             var first = true;
             List<string> temp = null;
 
-            var last = population.ValueList.Last();
-
-            foreach (var list in population.ValueList)
+            for (var index = 0; index < population.ValueList.Count; index++)
+            {
+                var list = population.ValueList[index];
                 if (GetByChance(chance))
                     if (first)
                     {
-                        if (list.Equals(last))
+                        if (index == population.ValueList.Count)
                         {
                             toReturn.Add(list);
                         }
@@ -175,6 +175,7 @@ namespace Tema_2
                     }
                 else
                     toReturn.Add(list);
+            }
 
             if (!first)
                 toReturn.Add(temp);

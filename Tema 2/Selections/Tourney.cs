@@ -13,7 +13,7 @@ namespace Tema_2.Selections
             while (true)
             {
                 var k = population.ValueList.Count / 10;
-                var j = Math.Max(k / 4, population.ValueList.Count - toReturn.Count);
+                var j = Math.Min(k / 2, population.ValueList.Count - toReturn.Count);
                 var randoms = new Population(new List<List<string>>());
 
                 while (k > 0)
@@ -24,7 +24,7 @@ namespace Tema_2.Selections
                 }
 
                 var orderedPopulation =
-                    new Population(population.ValueList.OrderBy(list => list.Evaluate(function)).Reverse().ToList());
+                    new Population(randoms.ValueList.OrderBy(list => list.Evaluate(function)).Reverse().ToList());
 
                 foreach (var list in orderedPopulation.ValueList)
                 {
