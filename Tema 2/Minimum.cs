@@ -21,15 +21,17 @@ namespace Tema_2
         }
 
         public static double GetMinimum(IFunction function, ISelection selector, int dimensions, int size,
-            double crossChance = 0.4, double mutationChance = 0.01)
+            double crossChance = 0.9, double mutationChance = 0.01)
         {
             Stopwatch.Restart();
             var population = Generator.GeneratePopulation(dimensions, function, size);
             const int maxIterations = 1000;
             var count = 0;
             var minimum = population.MinimOfPopulation(function);
-            while (population.HammingDistance() > 2 && count != maxIterations)
+            //while (population.HammingDistance() > 2 && count != maxIterations)
+            while (population.StandardDeviation(function) > 0.001 && count != maxIterations)
             {
+                //population.Write();
                 count++;
                 population = selector.Select(population, function);
                 population = population.CrossOver(function, crossChance);
@@ -40,8 +42,9 @@ namespace Tema_2
                     minimum = newMin;
             }
             Console.WriteLine(population.HammingDistance() + "\n");
-            minimum = population.MinimOfPopulation(function);
-            //population.Write();
+            //Console.WriteLine(population.StandardDeviation(function) + "\n");
+            //minimum = population.MinimOfPopulation(function);
+            population.Write();
             return minimum;
         }
     }

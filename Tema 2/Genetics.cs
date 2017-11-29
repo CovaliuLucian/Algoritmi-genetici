@@ -120,7 +120,7 @@ namespace Tema_2
             var second = new StringBuilder();
 
             for (var i = 0; i < 32; i++)
-                if (GetByChance(0.5))
+                if (GetByChance(0.8))
                 {
                     first.Append(firstNumber[i]);
                     second.Append(secondNumber[i]);
@@ -211,13 +211,11 @@ namespace Tema_2
                    population.ValueList.Count;
         }
 
-        public static void Write(this Population population)
+        public static double StandardDeviation(this Population population, IFunction function)
         {
-            population.ValueList.ForEach(x =>
-            {
-                x.ForEach(b => Console.Write(b.ToDouble() + " "));
-                Console.WriteLine();
-            });
+            var average = population.ValueList.Average(list => function.Calculate(list.ToDouble()));
+            var s = population.ValueList.Sum(list => Math.Pow(function.Calculate(list.ToDouble()) - average, 2));
+            return Math.Sqrt(s / (population.ValueList.Count - 1));
         }
     }
 }
