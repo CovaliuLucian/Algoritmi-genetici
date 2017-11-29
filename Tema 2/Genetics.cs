@@ -110,6 +110,31 @@ namespace Tema_2
             return toReturn;
         }
 
+        public static List<string> CrossOver2(string firstNumber, string secondNumber, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
+        {
+            var first = new StringBuilder();
+            var second = new StringBuilder();
+
+            for (var i = 0; i < 32; i++)
+                if (GetByChance(0.5))
+                {
+                    first.Append(firstNumber[i]);
+                    second.Append(secondNumber[i]);
+                }
+                else
+                {
+                    first.Append(secondNumber[i]);
+                    second.Append(firstNumber[i]);
+                }
+
+            var toReturn = new List<string> {first.ToString(), second.ToString()};
+            while (toReturn[0].ToDouble() < min || toReturn[0].ToDouble() > max || toReturn[1].ToDouble() < min || toReturn[1].ToDouble() > max)
+            {
+                toReturn = CrossOver(firstNumber, secondNumber);
+            }
+            return toReturn;
+        }
+
         public static Population CrossOver(this Population population, double chance = 0.1, double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
             var toReturn = new List<List<string>>();
@@ -135,7 +160,7 @@ namespace Tema_2
                     {
                         for (var i = 0; i < list.Count; i++)
                         {
-                            var crossed = CrossOver(temp[i], list[i], min, max);
+                            var crossed = CrossOver2(temp[i], list[i], min, max);
                             temp[i] = crossed[0];
                             list[i] = crossed[1];
                         }
