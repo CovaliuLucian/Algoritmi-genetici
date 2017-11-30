@@ -12,7 +12,7 @@ namespace Tema_2.Selections
             var toReturn = new List<List<string>>();
             while (true)
             {
-                var k = population.ValueList.Count / 10;
+                var k = population.ValueList.Count / 5;
                 var j = Math.Min(k / 2, population.ValueList.Count - toReturn.Count);
                 var randoms = new Population(new List<List<string>>());
 

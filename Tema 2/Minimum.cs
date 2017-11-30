@@ -25,21 +25,24 @@ namespace Tema_2
         {
             Stopwatch.Restart();
             var population = Generator.GeneratePopulation(dimensions, function, size);
-            const int maxIterations = 30000;
+            const int maxIterations = 20;
             var count = 0;
             var minimum = population.MinimOfPopulation(function);
             //while (population.HammingDistance() > 2 && count != maxIterations)
             while (population.StandardDeviation(function) > 0 && count != maxIterations)
             {
-                population.Write();
+                
                 Console.WriteLine();
                 //if (count%1000 == 0 && count > 0)
                     Console.WriteLine("Count= " + count);
                 count++;
+                population.Write();
+                Console.WriteLine("After m:");
                 population = selector.Select(population, function);
                 population = population.Mutate(function, mutationChance);
-                population = population.CrossOver(function, crossChance);
-
+                //population = population.CrossOver(function, crossChance);
+                Console.WriteLine();
+                population.Write();
                 var newMin = population.MinimOfPopulation(function);
                 if (minimum > newMin)
                     minimum = newMin;
