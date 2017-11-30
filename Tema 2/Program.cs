@@ -62,25 +62,25 @@ namespace Tema_2
             //                  "\nCorrect: 0");
             //Console.WriteLine("It took " + Minimum.GetTime());
 
-            Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new Tourney(), 5, 30) +
+            Console.WriteLine("De Jong: " + Math.Round(Minimum.GetMinimum(new DeJong1(), new Tourney(), 30, 100),4) +
                               "\nCorrect: 0");
             Console.WriteLine("It took " + Minimum.GetTime());
 
 
-            //const int dimension = 10;
-            //Console.WriteLine("\nSchwefel: " + Minimum.GetMinimum(new Schwefel(), new Tourney(), dimension, 1000) +
-            //                  "\nCorrect: " + -dimension * 418.9819);
-            //Console.WriteLine("It took " + Minimum.GetTime());
+            const int dimension = 10;
+            Console.WriteLine("\nSchwefel: " + Minimum.GetMinimum(new Schwefel(), new Tourney(), dimension, 100) +
+                              "\nCorrect: " + -dimension * 418.9819);
+            Console.WriteLine("It took " + Minimum.GetTime());
 
 
-            //Console.WriteLine("\nSixHump: " + Minimum.GetMinimum(new SixHump(), new Tourney(), 2, 1000) +
-            //                  "\nCorrect: -1.0316");
-            //Console.WriteLine("It took " + Minimum.GetTime());
+            Console.WriteLine("\nSixHump: " + Minimum.GetMinimum(new SixHump(), new Tourney(), 2, 100) +
+                              "\nCorrect: -1.0316");
+            Console.WriteLine("It took " + Minimum.GetTime());
 
 
-            //Console.WriteLine("\nRastrigin: " + Minimum.GetMinimum(new Rastrigin(), new Tourney(), 10, 1000) +
-            //                  "\nCorrect: 0");
-            //Console.WriteLine("It took " + Minimum.GetTime());
+            Console.WriteLine("\nRastrigin: " + Minimum.GetMinimum(new Rastrigin(), new Tourney(), 10, 100) +
+                              "\nCorrect: 0");
+            Console.WriteLine("It took " + Minimum.GetTime());
         }
     }
 }

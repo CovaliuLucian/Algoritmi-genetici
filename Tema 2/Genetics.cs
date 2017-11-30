@@ -82,11 +82,6 @@ namespace Tema_2
         {
             var pos = GetRandom(0, numbers.Count);
             numbers[pos] = numbers[pos].Mutate(min, max);
-
-            foreach (var number in numbers)
-                Console.Write(number.ToDouble() + " ");
-            Console.WriteLine();
-
             return numbers;
             //return numbers.Select(number => number.Mutate(min, max)).ToList();
         }
@@ -94,27 +89,6 @@ namespace Tema_2
         public static Population Mutate(this Population population, double chance = 0.01,
             double min = double.NegativeInfinity, double max = double.PositiveInfinity)
         {
-            var toReturn = new List<List<string>>();
-            foreach (var numbers in population.ValueList)
-            {
-                if (GetByChance(chance))
-                {
-                    Console.WriteLine("In big:");
-                    var x = numbers.Mutate(min, max);
-                    foreach (var number in x)
-                        Console.Write(number.ToDouble() + " ");
-                    Console.WriteLine();
-                    toReturn.Add(x);
-                }
-                else
-                    toReturn.Add(numbers);
-            }
-
-            var z = new Population(toReturn);
-            Console.WriteLine("Z");
-            z.Write();
-            return z;
-
             return new Population(population.ValueList
                 .Select(numbers => GetByChance(chance) ? numbers.Mutate(min, max) : numbers).ToList());
         }
@@ -189,7 +163,7 @@ namespace Tema_2
                     {
                         for (var i = 0; i < list.Count; i++)
                         {
-                            var crossed = CrossOver2(temp[i], list[i], min, max);
+                            var crossed = CrossOver(temp[i], list[i], min, max);
                             temp[i] = crossed[0];
                             list[i] = crossed[1];
                         }

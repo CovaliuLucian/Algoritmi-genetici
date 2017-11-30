@@ -12,7 +12,7 @@ namespace Tema_2.Selections
             var toReturn = new List<List<string>>();
             while (true)
             {
-                var k = population.ValueList.Count / 5;
+                var k = population.ValueList.Count / 10;
                 var j = Math.Min(k / 2, population.ValueList.Count - toReturn.Count);
                 var randoms = new Population(new List<List<string>>());
 
@@ -20,7 +20,7 @@ namespace Tema_2.Selections
                 {
                     k--;
                     var pos = Genetics.GetRandom(0, population.ValueList.Count);
-                    randoms.ValueList.Add(population.ValueList[pos]);
+                    randoms.ValueList.Add(population.ValueList[pos].ToList());
                 }
 
                 var orderedPopulation =
