@@ -38,6 +38,11 @@ namespace Functions
             return (double) Calculate(new List<decimal> {(decimal) entry[0]});
         }
 
+        public string GetName()
+        {
+            throw new NotImplementedException();
+        }
+
         public int Calculate(int entry) // can not be used thought the interface
         {
             return (int) (Math.Pow(entry, 3) - Math.Pow(entry, 2) * 60 + 900 * entry + 100);

@@ -37,5 +37,10 @@ namespace Functions
                              entry[0] * entry[1] + (-4 + 4 * Math.Pow(entry[1], 2)) *
                              Math.Pow(entry[1], 2));
         }
+
+        public string GetName()
+        {
+            return "SixHump";
+        }
     }
 }

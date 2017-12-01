@@ -23,7 +23,7 @@ namespace Tema_2
         }
 
         private static async Task<List<double>> RunAsync(int dimensions, ISelection selector, IFunction function,
-            int populationSize, int iterations = 15)
+            int populationSize, int iterations = 1)
         {
             var results = new List<double>();
 

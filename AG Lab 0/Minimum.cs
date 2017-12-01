@@ -42,9 +42,9 @@ namespace AG_Lab_0
         public static void SetParameters(int iterations = 1000, int maximumSearches = 1000,
             decimal accuracy = (decimal) 0.1)
         {
-            Minimum._iterations = iterations;
-            Minimum._maximumSearches = maximumSearches;
-            Minimum._accuracy = accuracy;
+            _iterations = iterations;
+            _maximumSearches = maximumSearches;
+            _accuracy = accuracy;
         }
 
         public static void CountTime()
@@ -88,11 +88,23 @@ namespace AG_Lab_0
 
         private static void CalculateMinimumHillClimb(IFunction function, int dimensions)
         {
+            var totalCounter = 0;
+            Console.WriteLine();
+
             for (var i = 0; i < dimensions; i++)
             for (var count = 0; count < _maximumSearches; count++)
             {
                 var newList = _listOfArgs.ToList();
                 newList[i] = Explore(function, _listOfArgs.ToList(), i);
+
+                if (function.Counter > 1000 || totalCounter == 0)
+                {
+                    totalCounter += function.Counter;
+                    Console.WriteLine(function.GetName() + " " + totalCounter + " at " +
+                                      Math.Round(function.Calculate(_listOfArgs), 4));
+                    function.Counter = 0;
+                }
+
                 var exploredValue = function.Calculate(newList);
                 if (exploredValue < function.Calculate(_listOfArgs) &&
                     exploredValue + BestImprovement < function.Calculate(_listOfArgs))
@@ -129,6 +141,7 @@ namespace AG_Lab_0
         private static void CalculateMinimumAnnealing(IFunction function, int dimensions)
         {
             decimal T = 100;
+
             for (var i = 0; i < dimensions; i++)
             for (var count = 0; count < _maximumSearches; count++)
             {
@@ -170,8 +183,8 @@ namespace AG_Lab_0
                 await Task.Run(() =>
                 {
                     // CalculateMinimumOld(function, dimensions); // my thing
-                    // CalculateMinimumHillClimb(function, dimensions); // hillclimb
-                    CalculateMinimumAnnealing(function, dimensions); // annealing
+                    CalculateMinimumHillClimb(function, dimensions); // hillclimb
+                    //CalculateMinimumAnnealing(function, dimensions); // annealing
                 });
 
             return _min;

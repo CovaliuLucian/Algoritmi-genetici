@@ -38,5 +38,10 @@ namespace Functions
 
             return result;
         }
+
+        public string GetName()
+        {
+            return "Schwefel";
+        }
     }
 }

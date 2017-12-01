@@ -14,7 +14,7 @@ namespace Tema_2.Selections
 
             var individual = evaluated.Select(x => x / total).ToList();
 
-            var relative = new List<double> { 0 };
+            var relative = new List<double> {0};
             for (var i = 1; i < individual.Count; i++)
                 relative.Add(individual[i] + relative[i - 1]);
 

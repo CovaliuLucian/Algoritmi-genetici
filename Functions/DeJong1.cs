@@ -26,5 +26,10 @@ namespace Functions
             Counter++;
             return entry.Select(t => t * t).Sum();
         }
+
+        public string GetName()
+        {
+            return "DeJong";
+        }
     }
 }

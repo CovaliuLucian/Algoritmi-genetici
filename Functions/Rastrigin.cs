@@ -38,5 +38,10 @@ namespace Functions
             result += 10 * entry.Count;
             return result;
         }
+
+        public string GetName()
+        {
+            return "Rastrigin";
+        }
     }
 }
