@@ -21,34 +21,38 @@ namespace Tema_2
         }
 
         public static double GetMinimum(IFunction function, ISelection selector, int dimensions, int size,
-            double crossChance = 0.7, double mutationChance = 0.5)
+            double crossChance = 0.5, double mutationChance = 0.3)
         {
             Stopwatch.Restart();
             var population = Generator.GeneratePopulation(dimensions, function, size);
             const int maxIterations = 1000;
             var count = 0;
-            var minimum = population.MinimOfPopulation(function);
+            var timesForBreak = 5;
+            var lastMinimum = population.MinimOfPopulation(function);
             //while (population.HammingDistance() > 2 && count != maxIterations)
-            while (population.StandardDeviation(function) > 1 && count != maxIterations)
+            while (count != maxIterations)
             {
                 count++;
-                //if (count%1000 == 0 && count > 0)
-                //    Console.WriteLine("Count= " + count);
+                if(count % 10 == 0)
+                {
+                    var currentMinimum = population.MinimOfPopulation(function);
+                    if (Math.Abs(currentMinimum - lastMinimum) < 0.00001)
+                        if (timesForBreak == 0)
+                            break;
+                        else
+                            timesForBreak--;
+                    else
+                        lastMinimum = currentMinimum;
+                }
 
                 population = selector.Select(population, function);
                 population = population.Mutate(function, mutationChance);
                 population = population.CrossOver(function, crossChance);
-
-                //var newMin = population.MinimOfPopulation(function);
-                //if (minimum > newMin)
-                //    minimum = newMin;
             }
             //population.Write();
             //Console.WriteLine(population.HammingDistance() + "\n");
-            Console.WriteLine(population.StandardDeviation(function) + "\n");
-            minimum = population.MinimOfPopulation(function);
-            //population.Write();
-            return minimum;
+            //Console.WriteLine(population.StandardDeviation(function) + "\n");
+            return population.MinimOfPopulation(function);
         }
     }
 }

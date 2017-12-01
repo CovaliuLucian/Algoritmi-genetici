@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
 using Functions;
 using Tema_2.Exceptions;
@@ -10,6 +11,7 @@ namespace Tema_2
     public static class Genetics
     {
         private static readonly Random RandomGenerator = new Random(Guid.NewGuid().GetHashCode());
+        private static MemoryCache _cache = new MemoryCache("Names");
 
         public static int GetRandom(int min, int max)
         {
@@ -40,7 +42,7 @@ namespace Tema_2
 
         public static string ToBinary(this double number, int precisionQuantifier = 1000)
         {
-            return Convert.ToString((int) Math.Floor(number * precisionQuantifier), 2)
+            return Convert.ToString((int)Math.Floor(number * precisionQuantifier), 2)
                 .PadLeft(32, number >= 0 ? '0' : '1');
         }
 
@@ -56,7 +58,7 @@ namespace Tema_2
 
         public static double ToDouble(this string number, int precisionQuantifier = 1000)
         {
-            return (double) number.ToInt() / precisionQuantifier;
+            return (double)number.ToInt() / precisionQuantifier;
         }
 
         public static List<double> ToDouble(this List<string> numbers, int precisionQuantifier = 1000)
@@ -95,7 +97,7 @@ namespace Tema_2
 
         public static Population Mutate(this Population population, IFunction function, double chance = 0.1)
         {
-            return Mutate(population, chance, (double) function.SearchMinimum, (double) function.SearchMaximum);
+            return Mutate(population, chance, (double)function.SearchMinimum, (double)function.SearchMaximum);
         }
 
         public static List<string> CrossOver(string firstNumber, string secondNumber,
@@ -131,7 +133,7 @@ namespace Tema_2
                     second.Append(firstNumber[i]);
                 }
 
-            var toReturn = new List<string> {first.ToString(), second.ToString()};
+            var toReturn = new List<string> { first.ToString(), second.ToString() };
             while (toReturn[0].ToDouble() < min || toReturn[0].ToDouble() > max || toReturn[1].ToDouble() < min ||
                    toReturn[1].ToDouble() > max)
                 toReturn = CrossOver(firstNumber, secondNumber);
@@ -183,7 +185,7 @@ namespace Tema_2
 
         public static Population CrossOver(this Population population, IFunction function, double chance = 0.1)
         {
-            return CrossOver(population, chance, (double) function.SearchMinimum, (double) function.SearchMaximum);
+            return CrossOver(population, chance, (double)function.SearchMinimum, (double)function.SearchMaximum);
         }
 
         public static double HammingDistance(List<string> number1, List<string> number2)
@@ -195,7 +197,7 @@ namespace Tema_2
                 count++;
                 distance += HammingDistance(number1[i], number2[i]);
             }
-            return (double) distance / count;
+            return (double)distance / count;
         }
 
         public static int HammingDistance(string number1, string number2)

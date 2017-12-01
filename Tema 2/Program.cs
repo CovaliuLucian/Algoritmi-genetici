@@ -4,7 +4,7 @@ using Tema_2.Selections;
 
 namespace Tema_2
 {
-    internal class Program
+    internal partial class Program
     {
         private static void Main()
         {
@@ -58,29 +58,32 @@ namespace Tema_2
             //                  "\nCorrect: 0");
             //Console.WriteLine("It took " + Minimum.GetTime());
 
-            //Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new WheelOfFortune(), 3, 100) +
+            //Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new WheelOfFortune(), 30, 100) +
             //                  "\nCorrect: 0");
             //Console.WriteLine("It took " + Minimum.GetTime());
 
-            Console.WriteLine("De Jong: " + Math.Round(Minimum.GetMinimum(new DeJong1(), new Tourney(), 30, 100),4) +
-                              "\nCorrect: 0");
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //Console.WriteLine("De Jong: " + Math.Round(Minimum.GetMinimum(new DeJong1(), new Tourney(), 30, 100),4) +
+            //                  "\nCorrect: 0");
+            //Console.WriteLine("It took " + Minimum.GetTime());
 
 
-            const int dimension = 10;
-            Console.WriteLine("\nSchwefel: " + Minimum.GetMinimum(new Schwefel(), new Tourney(), dimension, 100) +
-                              "\nCorrect: " + -dimension * 418.9819);
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //const int dimension = 30;
+            //Console.WriteLine("\nSchwefel: " + Math.Round(Minimum.GetMinimum(new Schwefel(), new Tourney(), dimension, 2000),6) +
+            //                  "\nCorrect: " + -dimension * 418.9819);
+            //Console.WriteLine("It took " + Minimum.GetTime());
 
 
-            Console.WriteLine("\nSixHump: " + Minimum.GetMinimum(new SixHump(), new Tourney(), 2, 100) +
-                              "\nCorrect: -1.0316");
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //Console.WriteLine("\nSixHump: " + Math.Round(Minimum.GetMinimum(new SixHump(), new Tourney(), 2, 300),6) +
+            //                  "\nCorrect: -1.0316");
+            //Console.WriteLine("It took " + Minimum.GetTime());
 
 
-            Console.WriteLine("\nRastrigin: " + Minimum.GetMinimum(new Rastrigin(), new Tourney(), 10, 100) +
-                              "\nCorrect: 0");
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //Console.WriteLine("\nRastrigin: " + Math.Round(Minimum.GetMinimum(new Rastrigin(), new Tourney(), 30, 2000),6) +
+            //                  "\nCorrect: 0");
+            //Console.WriteLine("It took " + Minimum.GetTime());
+
+
+            Run(true);
         }
     }
 }
