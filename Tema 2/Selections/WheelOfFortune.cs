@@ -32,12 +32,12 @@ namespace Tema_2.Selections
                     if (j == relative.Count - 1)
                     {
                         if (relative[j] < random && random <= 1)
-                            toReturn.Add(population.ValueList[j]);
+                            toReturn.Add(population.ValueList[j].ToList());
                         break;
                     }
 
                     if (!(relative[j] < random) || !(random <= relative[j + 1])) continue;
-                    toReturn.Add(population.ValueList[j]);
+                    toReturn.Add(population.ValueList[j].ToList());
                     break;
                 }
             }

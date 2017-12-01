@@ -9,30 +9,27 @@ namespace Tema_2.Selections
     {
         public Population Select(Population population, IFunction function)
         {
-            var dictionary = new Dictionary<double, List<string>>();
             var toReturn = new List<List<string>>();
             while (true)
             {
                 var k = population.ValueList.Count / 10;
-                var j = Math.Max(k / 2, population.ValueList.Count - toReturn.Count);
+                var j = Math.Min(k / 2, population.ValueList.Count - toReturn.Count);
                 var randoms = new Population(new List<List<string>>());
 
                 while (k > 0)
                 {
                     k--;
                     var pos = Genetics.GetRandom(0, population.ValueList.Count);
-                    randoms.ValueList.Add(population.ValueList[pos]);
+                    randoms.ValueList.Add(population.ValueList[pos].ToList());
                 }
 
-                var evaluated = randoms.Evaluate(function);
-                for (var i = 0; i < evaluated.Count; i++)
-                    dictionary.Add(evaluated[i], population.ValueList[i]);
+                var orderedPopulation =
+                    new Population(randoms.ValueList.OrderBy(list => list.Evaluate(function)).Reverse().ToList());
 
-                var orderedList = dictionary.OrderBy(x => x.Value).ToList();
-                foreach (var pair in orderedList)
+                foreach (var list in orderedPopulation.ValueList)
                 {
                     if (j > 0)
-                        toReturn.Add(pair.Value);
+                        toReturn.Add(list);
                     j--;
                 }
 

@@ -4,7 +4,7 @@ using Tema_2.Selections;
 
 namespace Tema_2
 {
-    internal class Program
+    internal partial class Program
     {
         private static void Main()
         {
@@ -15,7 +15,7 @@ namespace Tema_2
             //    Console.WriteLine(test.ToBinary().Mutate()+"\n");
             //}
 
-            //var test = Generator.GeneratePopulation(5, -5.12, 5.12, 5);
+            //var test = Generator.GeneratePopulation(2, -5.12, 5.12, 20);
             //test.ValueList.ForEach(x =>
             //{
             //    x.ForEach((b) => Console.Write(b.ToDouble() + " "));
@@ -29,9 +29,9 @@ namespace Tema_2
             //});
             //Console.WriteLine();
 
-            //var wheel = new WheelOfFortune();
+            //var wheel = new Tourney();
 
-            //var wheeled = wheel.Select(test,new DeJong1());
+            //var wheeled = wheel.Select(test, new DeJong1());
             //wheeled.ValueList.ForEach(x =>
             //{
             //    x.ForEach(b => Console.Write(b.ToDouble() + " "));
@@ -39,7 +39,7 @@ namespace Tema_2
             //});
 
             //Console.WriteLine();
-            //var crossed = wheeled.CrossOver();
+            //var crossed = wheeled.CrossOver(new DeJong1(),0.5);
             //crossed.ValueList.ForEach(x =>
             //{
             //    x.ForEach(b => Console.Write(b.ToDouble() + " "));
@@ -47,24 +47,43 @@ namespace Tema_2
             //});
 
             //Console.WriteLine();
-            //var mutated = wheeled.Mutate(0.5,-5.12,5.12);
+            //var mutated = wheeled.Mutate(new DeJong1(),0.01);
             //mutated.ValueList.ForEach(x =>
             //{
             //    x.ForEach(b => Console.Write(b.ToDouble() + " "));
             //    Console.WriteLine();
             //});
 
-            Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new Tourney(), 2, 100) + "\nCorrect: 0");
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new RankSelection(), 3, 100) +
+            //                  "\nCorrect: 0");
+            //Console.WriteLine("It took " + Minimum.GetTime());
 
-            Console.WriteLine("\nSchwefel: " + Minimum.GetMinimum(new Schwefel(), new WheelOfFortune(), 2, 100) + "\nCorrect: " + -2*418.9819);
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //Console.WriteLine("De Jong: " + Minimum.GetMinimum(new DeJong1(), new WheelOfFortune(), 30, 100) +
+            //                  "\nCorrect: 0");
+            //Console.WriteLine("It took " + Minimum.GetTime());
 
-            Console.WriteLine("\nSixHump: " + Minimum.GetMinimum(new SixHump(), new WheelOfFortune(), 2, 100) + "\nCorrect: -1.0316");
-            Console.WriteLine("It took " + Minimum.GetTime());
+            //Console.WriteLine("De Jong: " + Math.Round(Minimum.GetMinimum(new DeJong1(), new Tourney(), 30, 100),4) +
+            //                  "\nCorrect: 0");
+            //Console.WriteLine("It took " + Minimum.GetTime());
 
-            Console.WriteLine("\nRastrigin: " + Minimum.GetMinimum(new Rastrigin(), new WheelOfFortune(), 2, 100) + "\nCorrect: 0");
-            Console.WriteLine("It took " + Minimum.GetTime());
+
+            //const int dimension = 30;
+            //Console.WriteLine("\nSchwefel: " + Math.Round(Minimum.GetMinimum(new Schwefel(), new Tourney(), dimension, 2000),6) +
+            //                  "\nCorrect: " + -dimension * 418.9819);
+            //Console.WriteLine("It took " + Minimum.GetTime());
+
+
+            //Console.WriteLine("\nSixHump: " + Math.Round(Minimum.GetMinimum(new SixHump(), new Tourney(), 2, 300),6) +
+            //                  "\nCorrect: -1.0316");
+            //Console.WriteLine("It took " + Minimum.GetTime());
+
+
+            //Console.WriteLine("\nRastrigin: " + Math.Round(Minimum.GetMinimum(new Rastrigin(), new Tourney(), 30, 2000),6) +
+            //                  "\nCorrect: 0");
+            //Console.WriteLine("It took " + Minimum.GetTime());
+
+
+            Run(true);
         }
     }
 }

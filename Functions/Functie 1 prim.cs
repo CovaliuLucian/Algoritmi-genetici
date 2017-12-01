@@ -23,7 +23,7 @@ namespace Functions
             try
             {
                 var number = Convert.ToInt32(entry[0]);
-                return (decimal)(Math.Pow(number, 3) - Math.Pow(number, 2) * 60 + 900 * number + 100);
+                return (decimal) (Math.Pow(number, 3) - Math.Pow(number, 2) * 60 + 900 * number + 100);
             }
             catch
             {
@@ -35,12 +35,12 @@ namespace Functions
         {
             if (entry.Count != 1)
                 throw new InvalidDataException();
-            return (double)Calculate(new List<decimal> { (decimal)entry[0] });
+            return (double) Calculate(new List<decimal> {(decimal) entry[0]});
         }
 
-        public int Calculate(int entry)  // can not be used thought the interface
+        public int Calculate(int entry) // can not be used thought the interface
         {
-            return (int)(Math.Pow(entry, 3) - Math.Pow(entry, 2) * 60 + 900 * entry + 100);
+            return (int) (Math.Pow(entry, 3) - Math.Pow(entry, 2) * 60 + 900 * entry + 100);
         }
     }
 }

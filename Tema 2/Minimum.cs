@@ -9,6 +9,7 @@ namespace Tema_2
     public static class Minimum
     {
         private static readonly Stopwatch Stopwatch = new Stopwatch();
+
         public static TimeSpan GetTime()
         {
             return Stopwatch.Elapsed;
@@ -19,30 +20,39 @@ namespace Tema_2
             return population.ValueList.Min(list => function.Calculate(list.ToDouble()));
         }
 
-        public static double GetMinimum(IFunction function,ISelection selector, int dimensions, int size, double crossChance = 0.4, double mutationChance=0.1)
+        public static double GetMinimum(IFunction function, ISelection selector, int dimensions, int size,
+            double crossChance = 0.5, double mutationChance = 0.3)
         {
             Stopwatch.Restart();
             var population = Generator.GeneratePopulation(dimensions, function, size);
-            const int maxIterations = 3000;
+            const int maxIterations = 1000;
             var count = 0;
-            var minimum = population.MinimOfPopulation(function);
-            while (population.HammingDistance() > -2 && count!=maxIterations)
+            var timesForBreak = 5;
+            var lastMinimum = population.MinimOfPopulation(function);
+            //while (population.HammingDistance() > 2 && count != maxIterations)
+            while (count != maxIterations)
             {
                 count++;
-                if(count%1000 == 0)
-                    Console.WriteLine("At " + count + " iterations.");
-                population = selector.Select(population, function);
-                population = population.CrossOver(function, crossChance);
-                population = population.Mutate(function, mutationChance);
+                if(count % 10 == 0)
+                {
+                    var currentMinimum = population.MinimOfPopulation(function);
+                    if (Math.Abs(currentMinimum - lastMinimum) < 0.00001)
+                        if (timesForBreak == 0)
+                            break;
+                        else
+                            timesForBreak--;
+                    else
+                        lastMinimum = currentMinimum;
+                }
 
-                var newMin = population.MinimOfPopulation(function);
-                if (minimum > newMin)
-                    minimum = newMin;
+                population = selector.Select(population, function);
+                population = population.Mutate(function, mutationChance);
+                population = population.CrossOver(function, crossChance);
             }
-            Console.WriteLine(population.HammingDistance());
-            minimum = population.MinimOfPopulation(function);
             //population.Write();
-            return minimum;
+            //Console.WriteLine(population.HammingDistance() + "\n");
+            //Console.WriteLine(population.StandardDeviation(function) + "\n");
+            return population.MinimOfPopulation(function);
         }
     }
 }
