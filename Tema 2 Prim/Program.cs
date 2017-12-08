@@ -3,7 +3,6 @@ using System.Diagnostics;
 using Functions;
 using Tema_2;
 using Tema_2.Selections;
-using Tema_2_Prim.Functions;
 
 namespace Tema_2_Prim
 {
@@ -13,9 +12,9 @@ namespace Tema_2_Prim
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var rez = Minimum.GetMinimum(new FunctieTema2Prim(), new Tourney(), 2, 100);
+            var rez = Minimum.GetMinimum(new DeJong1(), new Tourney(), 10, 100);
             Console.WriteLine(stopwatch.Elapsed);
-            Console.WriteLine(Math.Round(rez,4));
+            Console.WriteLine(Math.Round(rez,10));
         }
     }
 }

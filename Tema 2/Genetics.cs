@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Functions;
-using LazyCache;
 using Tema_2.Exceptions;
 
 namespace Tema_2
@@ -11,7 +10,6 @@ namespace Tema_2
     public static class Genetics
     {
         private static readonly Random RandomGenerator = new Random(Guid.NewGuid().GetHashCode());
-        private static IAppCache _cache = new CachingService();
 
         public static int GetRandom(int min, int max)
         {
@@ -53,9 +51,6 @@ namespace Tema_2
 
         public static int ToInt(this string number)
         {
-            Func<int> toGet = () => Convert.ToInt32(number, 2);
-            return _cache.GetOrAdd(number, toGet);
-
             return Convert.ToInt32(number, 2);
         }
 
