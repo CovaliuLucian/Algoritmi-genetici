@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Functions;
-using LazyCache;
 
-namespace Tema_2
+namespace Tema_2_Prim
 {
     public static class Evaluator
     {

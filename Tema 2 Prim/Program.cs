@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using Functions;
-using Tema_2;
-using Tema_2.Selections;
+using Tema_2_Prim;
+using Tema_2_Prim.Selectors;
 
 namespace Tema_2_Prim
 {
-    internal class Program
+    internal partial class Program
     {
         private static void Main(string[] args)
         {
