@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tema 1", "AG Lab 0\Tema 1.csproj", "{6DCB54FE-62AD-4CC4-AE7A-F629F2A9C96B}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tema 2", "Tema 2\Tema 2.csproj", "{5ABC113A-167B-46F3-AEF2-1C2F52DF9F79}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AG tema 1 prim", "AG tema 1 prim\AG tema 1 prim\AG tema 1 prim.csproj", "{0009CB0C-4E96-4A42-B38D-DED2BBB121C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tema 2 Prim", "Tema 2 Prim\Tema 2 Prim.csproj", "{0A9F44F7-826E-4059-9C5B-ACA3FF66C0FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0009CB0C-4E96-4A42-B38D-DED2BBB121C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0009CB0C-4E96-4A42-B38D-DED2BBB121C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0009CB0C-4E96-4A42-B38D-DED2BBB121C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9F44F7-826E-4059-9C5B-ACA3FF66C0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9F44F7-826E-4059-9C5B-ACA3FF66C0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9F44F7-826E-4059-9C5B-ACA3FF66C0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9F44F7-826E-4059-9C5B-ACA3FF66C0FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
