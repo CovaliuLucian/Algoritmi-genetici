@@ -25,10 +25,11 @@ namespace Tema_2
         {
             function.Counter = 0;
             Stopwatch.Restart();
-            var population = Generator.GeneratePopulation(dimensions, function, size);
             const int maxIterations = 1000;
             var count = 0;
             var timesForBreak = 5;
+
+            var population = Generator.GeneratePopulation(dimensions, function, size);
             var lastMinimum = population.MinimOfPopulation(function);
             //while (population.HammingDistance() > 2 && count != maxIterations)
             while (count != maxIterations)

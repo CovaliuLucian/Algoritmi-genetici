@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Functions;
+using Tema_2_Prim.Exceptions;
 
 namespace Tema_2_Prim
 {

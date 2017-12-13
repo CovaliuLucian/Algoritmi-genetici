@@ -28,7 +28,7 @@ namespace Tema_2_Prim
             var population = Generator.GeneratePopulation(dimensions, function, size);
             const int maxIterations = 1000;
             var count = 0;
-            var timesForBreak = 5;
+            var timesForBreak = 3;
             var lastMinimum = population.MinimOfPopulation(function);
             //while (population.HammingDistance() > 2 && count != maxIterations)
             while (count != maxIterations)
@@ -38,12 +38,19 @@ namespace Tema_2_Prim
                 {
                     var currentMinimum = population.MinimOfPopulation(function);
                     if (Math.Abs(currentMinimum - lastMinimum) < 0.00001)
-                        if (timesForBreak == 0)
+                        if (timesForBreak == 1)
                             break;
                         else
                             timesForBreak--;
                     else
                         lastMinimum = currentMinimum;
+
+                    // Imbunatatire - rata adaptiva pentru cross/mutation
+                    if (count % 100 == 0)
+                    {
+                        crossChance -= crossChance * 0.05;
+                        mutationChance -= mutationChance * 0.05;
+                    }
                 }
 
                 population = selector.Select(population, function);
