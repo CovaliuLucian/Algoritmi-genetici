@@ -48,8 +48,12 @@ namespace Tema_2_Prim
                     // Imbunatatire - rata adaptiva pentru cross/mutation
                     if (count % 100 == 0)
                     {
-                        crossChance -= crossChance * 0.05;
+                        crossChance += crossChance * 0.05;
+                        if (crossChance > 0.8)
+                            crossChance = 0.8;
                         mutationChance -= mutationChance * 0.05;
+                        if (mutationChance < 0.1)
+                            mutationChance = 0.1;
                     }
                 }
 
