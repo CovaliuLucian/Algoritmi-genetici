@@ -45,17 +45,19 @@ namespace Tema_2
                     var stopwatch = new Stopwatch();
                     stopwatch.Start();
 
-                    var results = RunAsync(5, new Tourney(), new DeJong1(), 100).Result;
-                    writer.WriteLine("DeJong on 5 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    List<double> results;
 
-                    results = RunAsync(10, new Tourney(), new DeJong1(), 100).Result;
-                    writer.WriteLine("DeJong on 10 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    //results = RunAsync(5, new Tourney(), new DeJong1(), 100).Result;
+                    //writer.WriteLine("DeJong on 5 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
+
+                    //results = RunAsync(10, new Tourney(), new DeJong1(), 100).Result;
+                    //writer.WriteLine("DeJong on 10 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
 
                     results = RunAsync(30, new Tourney(), new DeJong1(), 100).Result;
                     writer.WriteLine("DeJong on 30 dimensions: ");
@@ -70,65 +72,65 @@ namespace Tema_2
                     stopwatch.Restart();
 
 
-                    results = RunAsync(5, new Tourney(), new Schwefel(), 2000).Result;
-                    writer.WriteLine("Schwefel on 5 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: " + -418.9819 * 5);
+                    //results = RunAsync(5, new Tourney(), new Schwefel(), 2000).Result;
+                    //writer.WriteLine("Schwefel on 5 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: " + -418.9819 * 5);
 
-                    results = RunAsync(10, new Tourney(), new Schwefel(), 2500).Result;
-                    writer.WriteLine("Schwefel on 10 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: " + -418.9819 * 10);
+                    //results = RunAsync(10, new Tourney(), new Schwefel(), 2500).Result;
+                    //writer.WriteLine("Schwefel on 10 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: " + -418.9819 * 10);
 
-                    results = RunAsync(30, new Tourney(), new Schwefel(), 3000).Result;
-                    writer.WriteLine("Schwefel on 30 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: " + -418.9819 * 30);
+                    //results = RunAsync(30, new Tourney(), new Schwefel(), 3000).Result;
+                    //writer.WriteLine("Schwefel on 30 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: " + -418.9819 * 30);
 
-                    Console.WriteLine("Schwefel Done.");
-                    Console.WriteLine("It took " + stopwatch.Elapsed);
+                    //Console.WriteLine("Schwefel Done.");
+                    //Console.WriteLine("It took " + stopwatch.Elapsed);
 
-                    writer.WriteLine("It took " + stopwatch.Elapsed + " for these.");
-                    stopwatch.Restart();
-
-
-                    results = RunAsync(2, new Tourney(), new SixHump(), 1000).Result;
-                    writer.WriteLine("Six Hump on 2 dimensions(max): ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: -1.0316");
-
-                    Console.WriteLine("SixHump Done.");
-                    Console.WriteLine("It took " + stopwatch.Elapsed);
+                    //writer.WriteLine("It took " + stopwatch.Elapsed + " for these.");
+                    //stopwatch.Restart();
 
 
-                    writer.WriteLine("It took " + stopwatch.Elapsed + " for these.");
-                    stopwatch.Restart();
+                    //results = RunAsync(2, new Tourney(), new SixHump(), 1000).Result;
+                    //writer.WriteLine("Six Hump on 2 dimensions(max): ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: -1.0316");
+
+                    //Console.WriteLine("SixHump Done.");
+                    //Console.WriteLine("It took " + stopwatch.Elapsed);
 
 
-                    results = RunAsync(5, new Tourney(), new Rastrigin(), 2000).Result;
-                    writer.WriteLine("Rastrigin on 5 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    //writer.WriteLine("It took " + stopwatch.Elapsed + " for these.");
+                    //stopwatch.Restart();
 
-                    results = RunAsync(10, new Tourney(), new Rastrigin(), 2500).Result;
-                    writer.WriteLine("Rastrigin on 10 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
 
-                    results = RunAsync(30, new Tourney(), new Rastrigin(), 3000).Result;
-                    writer.WriteLine("Rastrigin on 30 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    //results = RunAsync(5, new Tourney(), new Rastrigin(), 2000).Result;
+                    //writer.WriteLine("Rastrigin on 5 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
 
-                    Console.WriteLine("Rastrigin Done.");
-                    Console.WriteLine("It took " + stopwatch.Elapsed);
+                    //results = RunAsync(10, new Tourney(), new Rastrigin(), 2500).Result;
+                    //writer.WriteLine("Rastrigin on 10 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
+
+                    //results = RunAsync(30, new Tourney(), new Rastrigin(), 3000).Result;
+                    //writer.WriteLine("Rastrigin on 30 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
+
+                    //Console.WriteLine("Rastrigin Done.");
+                    //Console.WriteLine("It took " + stopwatch.Elapsed);
                 }
             }
             else

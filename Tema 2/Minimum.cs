@@ -28,6 +28,7 @@ namespace Tema_2
             const int maxIterations = 1000;
             var count = 0;
             var timesForBreak = 5;
+            var totalCount = 0;
 
             var population = Generator.GeneratePopulation(dimensions, function, size);
             var lastMinimum = population.MinimOfPopulation(function);
@@ -50,6 +51,14 @@ namespace Tema_2
                 population = selector.Select(population, function);
                 population = population.Mutate(function, mutationChance);
                 population = population.CrossOver(function, crossChance);
+
+                if (function.Counter > 1000)
+                {
+                    totalCount += function.Counter;
+                    Console.WriteLine(function.GetName() + " " + totalCount + " " +
+                                      Math.Round(population.MinimOfPopulation(function), 4));
+                    function.Counter = 0;
+                }
             }
             //population.Write();
             //Console.WriteLine(population.HammingDistance() + "\n");

@@ -45,17 +45,19 @@ namespace Tema_2_Prim
                     var stopwatch = new Stopwatch();
                     stopwatch.Start();
 
-                    var results = RunAsync(5, new Tourney(), new DeJong1(), 100).Result;
-                    writer.WriteLine("DeJong on 5 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    List<double> results;
 
-                    results = RunAsync(10, new Tourney(), new DeJong1(), 100).Result;
-                    writer.WriteLine("DeJong on 10 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    //results = RunAsync(5, new Tourney(), new DeJong1(), 100).Result;
+                    //writer.WriteLine("DeJong on 5 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
+
+                    //results = RunAsync(10, new Tourney(), new DeJong1(), 100).Result;
+                    //writer.WriteLine("DeJong on 10 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
 
                     results = RunAsync(30, new Tourney(), new DeJong1(), 100).Result;
                     writer.WriteLine("DeJong on 30 dimensions: ");
@@ -70,17 +72,17 @@ namespace Tema_2_Prim
                     stopwatch.Restart();
 
 
-                    results = RunAsync(5, new Tourney(), new Schwefel(), 2000).Result;
-                    writer.WriteLine("Schwefel on 5 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: " + -418.9819 * 5);
+                    //results = RunAsync(5, new Tourney(), new Schwefel(), 2000).Result;
+                    //writer.WriteLine("Schwefel on 5 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: " + -418.9819 * 5);
 
-                    results = RunAsync(10, new Tourney(), new Schwefel(), 2500).Result;
-                    writer.WriteLine("Schwefel on 10 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: " + -418.9819 * 10);
+                    //results = RunAsync(10, new Tourney(), new Schwefel(), 2500).Result;
+                    //writer.WriteLine("Schwefel on 10 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: " + -418.9819 * 10);
 
                     results = RunAsync(30, new Tourney(), new Schwefel(), 3000).Result;
                     writer.WriteLine("Schwefel on 30 dimensions: ");
@@ -109,17 +111,17 @@ namespace Tema_2_Prim
                     stopwatch.Restart();
 
 
-                    results = RunAsync(5, new Tourney(), new Rastrigin(), 2000).Result;
-                    writer.WriteLine("Rastrigin on 5 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    //results = RunAsync(5, new Tourney(), new Rastrigin(), 2000).Result;
+                    //writer.WriteLine("Rastrigin on 5 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
 
-                    results = RunAsync(10, new Tourney(), new Rastrigin(), 2500).Result;
-                    writer.WriteLine("Rastrigin on 10 dimensions: ");
-                    results.ForEach(number => writer.WriteLine(number));
-                    writer.WriteLine("Average: " + results.Average());
-                    writer.WriteLine("Correct: 0");
+                    //results = RunAsync(10, new Tourney(), new Rastrigin(), 2500).Result;
+                    //writer.WriteLine("Rastrigin on 10 dimensions: ");
+                    //results.ForEach(number => writer.WriteLine(number));
+                    //writer.WriteLine("Average: " + results.Average());
+                    //writer.WriteLine("Correct: 0");
 
                     results = RunAsync(30, new Tourney(), new Rastrigin(), 3000).Result;
                     writer.WriteLine("Rastrigin on 30 dimensions: ");

@@ -30,6 +30,7 @@ namespace Tema_2_Prim
             var count = 0;
             var timesForBreak = 3;
             var lastMinimum = population.MinimOfPopulation(function);
+            var totalCount = 0;
             //while (population.HammingDistance() > 2 && count != maxIterations)
             while (count != maxIterations)
             {
@@ -37,7 +38,7 @@ namespace Tema_2_Prim
                 if (count % 10 == 0)
                 {
                     var currentMinimum = population.MinimOfPopulation(function);
-                    if (Math.Abs(currentMinimum - lastMinimum) < 0.00001)
+                    if (Math.Abs(currentMinimum - lastMinimum) < 0.001)
                         if (timesForBreak == 1)
                             break;
                         else
@@ -55,6 +56,13 @@ namespace Tema_2_Prim
                         if (mutationChance < 0.1)
                             mutationChance = 0.1;
                     }
+                }
+
+                if (function.Counter > 1000)
+                {
+                    totalCount += function.Counter;
+                    Console.WriteLine(function.GetName() + " " + totalCount + " " + Math.Round(population.MinimOfPopulation(function)),3);
+                    function.Counter = 0;
                 }
 
                 population = selector.Select(population, function);
