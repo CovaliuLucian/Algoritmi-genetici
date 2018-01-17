@@ -13,7 +13,12 @@ namespace Tema_3.Selections
 
         public List<List<int>> Select(Population population)
         {
-            return population.ValueList.OrderBy(list => list.Fitness()).Take(2).ToList();
+            var ordered = population.ValueList.OrderBy(list => list.Fitness());
+            return new List<List<int>>
+            {
+                ordered.First(),
+                ordered.First()
+            };
         }
     }
 }

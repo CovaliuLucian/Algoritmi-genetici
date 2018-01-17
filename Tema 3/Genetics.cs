@@ -20,6 +20,8 @@ namespace Tema_3
 
         public static int Conflicts(this List<int> input)
         {
+            if (input == null)
+                return 999999;
             var fitness = 0;
             for (var i = 0; i < input.Count - 1; i++)
             for (var j = i + 1; j < input.Count; j++)
@@ -72,6 +74,8 @@ namespace Tema_3
 
         public static int UsedColors(this List<int> chromosome)
         {
+            if (chromosome == null)
+                return 999999;
             var allColors = new List<int>();
             foreach (var i in chromosome)
                 if (!allColors.Contains(i))

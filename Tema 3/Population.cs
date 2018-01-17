@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MoreLinq;
 using Tema_3.Exceptions;
 
 namespace Tema_3
@@ -95,13 +96,14 @@ namespace Tema_3
 
         public List<int> GetBest()
         {
-            return ValueList.OrderBy(list => list.Fitness()).Take(1).Single();
+            return ValueList.MinBy(list => list.Fitness());
         }
 
         public List<int> GetBestColored()
         {
-            var t = ValueList.Where(list => list.Fitness() == GetMinimumFitness());
-            return t.OrderBy(list => list.UsedColors()).First();
+            var noConflicts = ValueList.Where(list => list.Conflicts() == 0);
+            var enumerable = noConflicts as IList<List<int>> ?? noConflicts.ToList();
+            return !enumerable.Any() ? null : enumerable.MinBy(list => list.UsedColors());
         }
     }
 }

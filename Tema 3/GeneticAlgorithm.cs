@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Tema_3.Mutations;
 using Tema_3.Selections;
 
@@ -15,7 +17,10 @@ namespace Tema_3
             var i = 0;
             var phaseTwo = false;
 
-            while (i < runs)
+            var watch = new Stopwatch();
+            watch.Start();
+
+            while (i < runs && population.GetBestColored().UsedColors() != 5)
             {
                 var parents = selection.Select(population);
                 var child = parents.CrossOver();
@@ -25,17 +30,33 @@ namespace Tema_3
                 population.ValueList.Add(child);
                 population.ReGenerate();
 
-
-                if (population.GetBest().Conflicts() <= 2 && !phaseTwo)
+                if (!phaseTwo)
                 {
-                    selection = new Selector2();
-                    mutation = new Mutation2();
-                    phaseTwo = true;
+                    if (population.GetBest().Conflicts() <= 4)
+                    {
+                        selection = new Selector2();
+                        mutation = new Mutation2();
+                        phaseTwo = true;
+                    }
+                }
+                else
+                {
+                    if (population.GetBest().Conflicts() > 5)
+                    {
+                        selection = new Selector1();
+                        mutation = new Mutation1();
+                        phaseTwo = false;
+                    }
                 }
 
+                if (i % 500 == 0)
+                    Console.WriteLine(i);
 
                 i++;
             }
+
+            Console.WriteLine(watch.Elapsed);
+            watch.Stop();
 
             return population.GetBestColored().Conflicts() == 0
                 ? population.GetBestColored()
