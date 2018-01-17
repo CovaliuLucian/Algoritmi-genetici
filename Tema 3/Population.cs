@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Tema_3.Exceptions;
 
 namespace Tema_3
@@ -9,13 +10,20 @@ namespace Tema_3
     {
         public static int[,] Adjacency;
         public static int ValidColors, Vertices;
+        public static int Size;
         public List<List<int>> ValueList;
+
+        public Population(int s)
+        {
+            Size = s;
+            ValueList = null;
+            Read();
+            ValidColors = Vertices - 1;
+        }
 
         public Population()
         {
             ValueList = null;
-            Read();
-            ValidColors = Vertices - 1;
         }
 
         private static void Read()
@@ -28,8 +36,8 @@ namespace Tema_3
                 if (line.StartsWith("p edge"))
                 {
                     var split = line.Split(' ');
-                    Vertices = Convert.ToInt32(split[3]);
-                    Adjacency = new int[Vertices+1, Vertices+1];
+                    Vertices = Convert.ToInt32(split[2]);
+                    Adjacency = new int[Vertices + 1, Vertices + 1];
                 }
                 else if (line.StartsWith("e"))
                 {
@@ -59,11 +67,25 @@ namespace Tema_3
             foreach (var list in ValueList)
             {
                 foreach (var i in list)
-                {
                     Console.Write(i + " ");
-                }
+                Console.Write("with: " +list.Fitness());
                 Console.WriteLine();
             }
+        }
+
+        public List<List<int>> GetTopHalf()
+        {
+            return ValueList.OrderBy(list => list.Fitness()).Take(ValueList.Count / 2).ToList();
+        }
+
+        public List<List<int>> GetBottomHalf()
+        {
+            return ValueList.OrderByDescending(list => list.Fitness()).Take(ValueList.Count / 2).ToList();
+        }
+
+        public int GetMinimumFitness()
+        {
+            return ValueList.Min(list => list.Fitness());
         }
     }
 }

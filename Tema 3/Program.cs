@@ -10,6 +10,20 @@ namespace Tema_3
             population.WriteAdjacency();
             Console.WriteLine();
             population.WriteValueList();
+
+            Console.WriteLine();
+
+            var p = new Population {ValueList = population.GetTopHalf()};
+            p.WriteValueList();
+
+            Console.WriteLine();
+
+            p = new Population { ValueList = population.GetBottomHalf()};
+            p.WriteValueList();
+
+            Console.WriteLine();
+
+            Console.WriteLine(population.GetMinimumFitness());
         }
     }
 }
