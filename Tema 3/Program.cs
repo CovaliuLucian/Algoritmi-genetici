@@ -1,4 +1,5 @@
 ﻿using System;
+using Tema_3.Mutations;
 
 namespace Tema_3
 {
@@ -6,24 +7,13 @@ namespace Tema_3
     {
         private static void Main(string[] args)
         {
-            var population = Generator.Generate(10);
-            population.WriteAdjacency();
-            Console.WriteLine();
-            population.WriteValueList();
-
-            Console.WriteLine();
-
-            var p = new Population {ValueList = population.GetTopHalf()};
-            p.WriteValueList();
-
-            Console.WriteLine();
-
-            p = new Population { ValueList = population.GetBottomHalf()};
-            p.WriteValueList();
-
-            Console.WriteLine();
-
-            Console.WriteLine(population.GetMinimumFitness());
+            var result = GeneticAlgorithm.Run(20000, 50);
+            foreach (var i in result)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine("\nFitness: " + result.Fitness());
+            Console.WriteLine("It used {0} colors",result.UsedColors());
         }
     }
 }

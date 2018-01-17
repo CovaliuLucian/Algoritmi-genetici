@@ -13,12 +13,17 @@ namespace Tema_3
         public static int Size;
         public List<List<int>> ValueList;
 
+        private static bool _firstInit = true;
+
         public Population(int s)
         {
-            Size = s;
-            ValueList = null;
-            Read();
-            ValidColors = Vertices - 1;
+            if (_firstInit)
+            {
+                Size = s;
+                Read();
+                ValidColors = Vertices - 1;
+            }
+            _firstInit = false;
         }
 
         public Population()
@@ -37,13 +42,13 @@ namespace Tema_3
                 {
                     var split = line.Split(' ');
                     Vertices = Convert.ToInt32(split[2]);
-                    Adjacency = new int[Vertices + 1, Vertices + 1];
+                    Adjacency = new int[Vertices, Vertices];
                 }
                 else if (line.StartsWith("e"))
                 {
                     var split = line.Split(' ');
-                    Adjacency[Convert.ToInt32(split[1]), Convert.ToInt32(split[2])] = 1;
-                    Adjacency[Convert.ToInt32(split[2]), Convert.ToInt32(split[1])] = 1;
+                    Adjacency[Convert.ToInt32(split[1])-1, Convert.ToInt32(split[2])-1] = 1;
+                    Adjacency[Convert.ToInt32(split[2])-1, Convert.ToInt32(split[1])-1] = 1;
                 }
                 else
                 {
@@ -86,6 +91,17 @@ namespace Tema_3
         public int GetMinimumFitness()
         {
             return ValueList.Min(list => list.Fitness());
+        }
+
+        public List<int> GetBest()
+        {
+            return ValueList.OrderBy(list => list.Fitness()).Take(1).Single();
+        }
+
+        public List<int> GetBestColored()
+        {
+            var t = ValueList.Where(list => list.Fitness() == GetMinimumFitness());
+            return t.OrderBy(list => list.UsedColors()).First();
         }
     }
 }

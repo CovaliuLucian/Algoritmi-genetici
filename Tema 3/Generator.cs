@@ -15,5 +15,14 @@ namespace Tema_3
             }
             return population;
         }
+
+        public static void ReGenerate(this Population population)
+        {
+            var newChromosomes = Generate(Population.Size - population.ValueList.Count);
+            foreach (var chromosome in newChromosomes.ValueList)
+            {
+                population.ValueList.Add(chromosome);
+            }
+        }
     }
 }

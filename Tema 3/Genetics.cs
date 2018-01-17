@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tema_3
 {
@@ -14,6 +15,11 @@ namespace Tema_3
 
         public static int Fitness(this List<int> input)
         {
+            return input.Conflicts() + input.UsedColors();
+        }
+
+        public static int Conflicts(this List<int> input)
+        {
             var fitness = 0;
             for (var i = 0; i < input.Count - 1; i++)
             for (var j = i + 1; j < input.Count; j++)
@@ -22,7 +28,7 @@ namespace Tema_3
             return fitness;
         }
 
-        public static List<int> CrossOver(List<List<int>> parents)
+        public static List<int> CrossOver(this List<List<int>> parents)
         {
             var toReturn = new List<int>();
             var r = GetRandom(0, Population.Vertices);
@@ -31,6 +37,46 @@ namespace Tema_3
             for (var i = r + 1; i < Population.Vertices; i++)
                 toReturn.Add(parents[1][i]);
             return toReturn;
+        }
+
+        public static int MostUsed(List<List<int>> input, int pos)
+        {
+            var counts = new List<int>(new int[Population.ValidColors+1]);
+            foreach (var list in input)
+            {
+                counts[list[pos]]++;
+            }
+
+            return counts.IndexOf(counts.Max());
+        }
+
+        public static List<int> WisdomOfCrowds(this Population population)
+        {
+            var expertChromosomes = population.GetTopHalf();
+            var aggregateChromosome = population.GetBest();
+
+            for (var i = 0; i < aggregateChromosome.Count; i++)
+            {
+                var badEdge = false;
+                for (var j = 0; j < aggregateChromosome.Count; j++)
+                    if (Population.Adjacency[i, j] == 1 && aggregateChromosome[i] == aggregateChromosome[j])
+                        badEdge = true;
+
+                if (badEdge)
+                    aggregateChromosome[i] = MostUsed(expertChromosomes, i);
+
+            }
+
+            return aggregateChromosome;
+        }
+
+        public static int UsedColors(this List<int> chromosome)
+        {
+            var allColors = new List<int>();
+            foreach (var i in chromosome)
+                if (!allColors.Contains(i))
+                    allColors.Add(i);
+            return allColors.Count;
         }
     }
 }
