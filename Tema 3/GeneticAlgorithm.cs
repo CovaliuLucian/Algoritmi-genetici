@@ -20,7 +20,7 @@ namespace Tema_3
             var watch = new Stopwatch();
             watch.Start();
 
-            while (i < runs && population.GetBestColored().UsedColors() != 5)
+            while (i < runs)
             {
                 var parents = selection.Select(population);
                 var child = parents.CrossOver();

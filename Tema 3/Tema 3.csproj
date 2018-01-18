@@ -55,6 +55,7 @@
     <Compile Include="Generator.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
     <Compile Include="Genetics.cs" />
+    <Compile Include="Heuristic.cs" />
     <Compile Include="IMutation.cs" />
     <Compile Include="ISelection.cs" />
     <Compile Include="Mutations\Mutation1.cs" />
