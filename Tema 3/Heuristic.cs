@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using Tema_3.Exceptions;
 
 namespace Tema_3
@@ -10,6 +11,22 @@ namespace Tema_3
     {
         public static int[,] Adjacency;
         public static int Vertices;
+
+        private static void Shuffle<T>(this IList<T> list)
+        {
+            var provider = new RNGCryptoServiceProvider();
+            var n = list.Count;
+            while (n > 1)
+            {
+                var box = new byte[1];
+                do provider.GetBytes(box); while (!(box[0] < n * (byte.MaxValue / n)));
+                var k = (box[0] % n);
+                n--;
+                var value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
 
         private static void Read()
         {
@@ -137,6 +154,47 @@ namespace Tema_3
             }
 
             return colors;
+        }
+
+        private static List<int> GreedyRandom()
+        {
+            Read();
+
+            var all = Enumerable.Range(0, Vertices).ToList();
+            all.Shuffle();
+
+            var colors = Enumerable.Repeat(-1, Vertices).ToList();
+            while (all.Count != 0)
+            {
+                var i = all.First();
+                var usedColors = Enumerable.Repeat(0, Vertices).ToList();
+                for (var j = 0; j < Vertices; j++)
+                {
+                    if (Adjacency[i, j] == 1 && colors[j] != -1)
+                        usedColors[colors[j]]++;
+                }
+                for (var i1 = 0; i1 < usedColors.Count; i1++)
+                {
+                    if (usedColors[i1] != 0) continue;
+                    colors[i] = i1;
+                    break;
+                }
+                all.RemoveAt(0);
+            }
+
+            return colors;
+        }
+
+        public static List<int> GreedyRandom(int iterations)
+        {
+            var best = GreedyRandom();
+            for (var i = 0; i < iterations - 1; i++)
+            {
+                var current = GreedyRandom();
+                if (current.UsedColors() < best.UsedColors() && current.Conflicts() <= best.Conflicts())
+                    best = current;
+            }
+            return best;
         }
     }
 }

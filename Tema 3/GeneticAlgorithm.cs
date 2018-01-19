@@ -49,7 +49,7 @@ namespace Tema_3
                     }
                 }
 
-                if (i % 500 == 0)
+                if (i % 100 == 0)
                     Console.WriteLine(i);
 
                 i++;

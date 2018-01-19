@@ -7,7 +7,7 @@ namespace Tema_3
     {
         private static void Main(string[] args)
         {
-            var result = GeneticAlgorithm.Run(2000, 50);
+            var result = GeneticAlgorithm.Run(1000, 500);
             foreach (var i in result)
             {
                 Console.Write(i + " ");
@@ -50,6 +50,15 @@ namespace Tema_3
 
             Console.Write("\nGreedy with Saturation degree ordering (SDO):\n");
             greedy = Heuristic.GreedyLdo();
+            foreach (var i in greedy)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine("\nFitness: " + greedy.Fitness());
+            Console.WriteLine("It used {0} colors", greedy.UsedColors());
+
+            Console.Write("\nGreedy with random order, more runs:\n");
+            greedy = Heuristic.GreedyRandom(50);
             foreach (var i in greedy)
             {
                 Console.Write(i + " ");
